@@ -1,13 +1,16 @@
 package com.acme.edu.iteration01;
 
-import com.acme.edu.Logger;
 import com.acme.edu.SysoutCaptureAndAssertionAbility;
+import com.acme.edu.TypeSafeLogger;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.*;
+import java.io.IOException;
 
+import static java.lang.System.lineSeparator;
+
+//ATDD
 public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     //region given
     @Before
@@ -24,24 +27,24 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
 
     @Test
     public void shouldLogInteger() throws IOException {
-        //region when
-        Logger.log(1);
-        Logger.log(0);
-        Logger.log(-1);
+//        region when
+        TypeSafeLogger.log(1);
+        TypeSafeLogger.log(0);
+        TypeSafeLogger.log(-1);
         //endregion
-
+        //i18n, l16n
         //region then
         assertSysoutContains("primitive: ");
-        assertSysoutEquals("primitive: 1\nprimitive: 0\nprimitive: -1\n");
+        assertSysoutEquals("primitive: 1\nprimitive: 0\nprimitive: -1" + lineSeparator());
         //endregion
     }
 
     @Test
     public void shouldLogByte() throws IOException {
         //region when
-        Logger.log((byte)1);
-        Logger.log((byte)0);
-        Logger.log((byte)-1);
+        TypeSafeLogger.log((byte)1);
+        TypeSafeLogger.log((byte)0);
+        TypeSafeLogger.log((byte)-1);
         //endregion
 
         //region then
@@ -52,14 +55,13 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         //endregion
     }
 
-    /*
-    TODO: implement Logger solution to match specification as tests
+//    TODO: implement TypeSafeLogger solution to match specification as tests
 
     @Test
     public void shouldLogChar() throws IOException {
         //region when
-        Logger.log('a');
-        Logger.log('b');
+        TypeSafeLogger.log('a');
+        TypeSafeLogger.log('b');
         //endregion
 
         //region then
@@ -69,11 +71,12 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         //endregion
     }
 
+    /*
     @Test
     public void shouldLogString() throws IOException {
         //region when
-        Logger.log("test string 1");
-        Logger.log("other str");
+        TypeSafeLogger.log("test string 1");
+        TypeSafeLogger.log("other str");
         //endregion
 
         //region then
@@ -86,8 +89,8 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     @Test
     public void shouldLogBoolean() throws IOException {
         //region when
-        Logger.log(true);
-        Logger.log(false);
+        TypeSafeLogger.log(true);
+        TypeSafeLogger.log(false);
         //endregion
 
         //region then
@@ -100,7 +103,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     @Test
     public void shouldLogReference() throws IOException {
         //region when
-        Logger.log(new Object());
+        TypeSafeLogger.log(new Object());
         //endregion
 
         //region then
