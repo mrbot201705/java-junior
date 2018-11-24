@@ -4,6 +4,7 @@ public class Logger {
     private static final String PRIM = "primitive: ";
     private static final String CHAR = "character: ";
     private static final String STR = "string: ";
+    private static final String REFERENCE = "reference: ";
     private static int intSum = 0;
     private static String prevString = "";
     private static int stringCounter;
@@ -11,6 +12,14 @@ public class Logger {
 
     private static void print(String message) {
         System.out.println(message);
+    }
+    private static String logger(int ... message) {
+        String arrayElements = "";
+        for(int elem : message) {
+            arrayElements+=String.valueOf(elem)+", ";
+        }
+        arrayElements = arrayElements.substring(0,arrayElements.length()-2);
+        return  arrayElements;
     }
 
     private static void intCheck() {
@@ -89,7 +98,29 @@ public class Logger {
         }
     }
 
-    public static void main(String[] args) {
+ /*   public static void log(Object message) {
+        print(REFERENCE + message.toString());
+    }*/
+
+    public static void log(int ... message) {
+        String arrayElements = "";
+        for(int elem : message) {
+            arrayElements+=String.valueOf(elem)+", ";
+        }
+        arrayElements = arrayElements.substring(0,arrayElements.length()-2);
+        print("primitives array: {"+arrayElements+"}");
+    }
+
+    public static void log(int[][] message) {
+        String separator = System.lineSeparator();
+        String arrayElements = "";
+        for(int[] array : message) {
+            arrayElements += "{"+logger(array)+"}" + separator;
+        }
+        print("primitives matrix: {"+separator + arrayElements+"}");
+    }
+
+   public static void main(String[] args) {
         //region Iteration1
 /*      log(1);
         log(-1);
@@ -124,13 +155,13 @@ public class Logger {
         close();*/
         //endregion
         //region Test3, shouldLogCorrectlyByteOverflowWhenSequentialBythes
-        log("str 1");
+/*        log("str 1");
         log((byte)10);
         log((byte)Byte.MAX_VALUE);
         log("str 2");
         log(2);
         log(1);
-        close();
+        close();*/
         //endregion
         //region Test4,shouldLogSameSubsequentStringsWithoutRepeat
 /*        log("str 1");
@@ -146,6 +177,15 @@ public class Logger {
         //endregion
 
         //endregion
+
+       //region Iteration3, shouldLogIntegersArray
+       //region Test1 shouldLogIntegersArray
+       //log(new int[] {-1, 0, 1});
+       //endregion
+       //region Test2  shouldLogIntegersMatrix
+       log(new int[][] {{-1, 0, 1}, {1, 2, 3}, {-1, -2, -3}});
+       //endregion
+       //endregion
 
 
     }
