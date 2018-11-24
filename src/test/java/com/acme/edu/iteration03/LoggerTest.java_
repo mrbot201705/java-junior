@@ -9,18 +9,21 @@ import org.junit.Test;
 import java.io.IOException;
 
 public class LoggerTest implements SysoutCaptureAndAssertionAbility {
-    private static final String SEP = System.lineSeparator();
     //region given
     @Before
     public void setUpSystemOut() throws IOException {
+        resetOut();
         captureSysout();
     }
+
     @After
     public void tearDown() {
         resetOut();
     }
     //endregion
 
+    /*
+    TODO: implement Logger solution to match specification as tests
 
     @Test
     public void shouldLogIntegersArray() throws IOException {
@@ -30,7 +33,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
 
         //region then
         assertSysoutEquals(
-            "primitives array: {-1, 0, 1}" + SEP
+            "primitives array: {-1, 0, 1}\n"
         );
         //endregion
     }
@@ -43,15 +46,15 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
 
         //region then
         assertSysoutEquals(
-            "primitives matrix: {" + SEP +
-                "{-1, 0, 1}" + SEP +
-                "{1, 2, 3}" + SEP +
-                "{-1, -2, -3}" + SEP +
-            "}" + SEP
+            "primitives matrix: {\n" +
+                "{-1, 0, 1}\n" +
+                "{1, 2, 3}\n" +
+                "{-1, -2, -3}\n" +
+            "}\n"
         );
         //endregion
     }
-/*
+
     @Test
     public void shouldLogIntegersMulitidimentionalArray() throws IOException {
         //region when

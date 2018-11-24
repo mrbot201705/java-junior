@@ -5,17 +5,17 @@ import com.acme.edu.SysoutCaptureAndAssertionAbility;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import sun.rmi.runtime.Log;
 
 import java.io.*;
 
 public class LoggerTest implements SysoutCaptureAndAssertionAbility {
+    public static final String SEP = System.lineSeparator();
     //region given
     @Before
     public void setUpSystemOut() throws IOException {
-        resetOut();
         captureSysout();
     }
-
     @After
     public void tearDown() {
         resetOut();
@@ -28,11 +28,12 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         Logger.log(1);
         Logger.log(0);
         Logger.log(-1);
+        Logger.close();
         //endregion
 
         //region then
         assertSysoutContains("primitive: ");
-        assertSysoutEquals("primitive: 1\nprimitive: 0\nprimitive: -1\n");
+        assertSysoutEquals("primitive: 0" + SEP);
         //endregion
     }
 
@@ -42,18 +43,17 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         Logger.log((byte)1);
         Logger.log((byte)0);
         Logger.log((byte)-1);
+        Logger.close();
         //endregion
 
         //region then
         assertSysoutContains("primitive: ");
-        assertSysoutContains("1");
         assertSysoutContains("0");
-        assertSysoutContains("-1");
         //endregion
     }
 
-    /*
-    TODO: implement Logger solution to match specification as tests
+
+    //TODO: implement Logger solution to match specification as tests
 
     @Test
     public void shouldLogChar() throws IOException {
@@ -74,6 +74,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         //region when
         Logger.log("test string 1");
         Logger.log("other str");
+        Logger.close();
         //endregion
 
         //region then
@@ -108,6 +109,4 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         assertSysoutContains("@");
         //endregion
     }
-
-    */
 }

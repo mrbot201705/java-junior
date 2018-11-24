@@ -115,22 +115,22 @@ public class Logger {
         close();*/
         //endregion
         //region Test2, shouldLogCorrectlyIntegerOverflowWhenSequentialIntegers
-        log("str 1");
+/*        log("str 1");
         log(10);
         log(Integer.MAX_VALUE);
         log("str 2");
         log(2);
         log(1);
-        close();
+        close();*/
         //endregion
         //region Test3, shouldLogCorrectlyByteOverflowWhenSequentialBythes
-/*        log("str 1");
+        log("str 1");
         log((byte)10);
         log((byte)Byte.MAX_VALUE);
         log("str 2");
         log(2);
         log(1);
-        close();*/
+        close();
         //endregion
         //region Test4,shouldLogSameSubsequentStringsWithoutRepeat
 /*        log("str 1");
